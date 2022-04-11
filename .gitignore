@@ -5,6 +5,9 @@
 *.tfstate
 *.tfstate.*
 
+# Sensible information
+tf-providing-4823385d0a0d.json
+
 # Crash log files
 crash.log
 
