@@ -5,9 +5,6 @@
 *.tfstate
 *.tfstate.*
 
-# Sensible information
-tf-providing-4823385d0a0d.json
-
 # Crash log files
 crash.log
 
@@ -16,6 +13,9 @@ crash.log
 # version control.
 #
 # example.tfvars
+
+# Ignore sensible files
+kube-provider-0a51d5356468.json
 
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
