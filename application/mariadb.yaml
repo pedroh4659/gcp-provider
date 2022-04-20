@@ -1,3 +1,29 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mariadb-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/opt/mariadb"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb-pv-claim
+  labels:
+    app: mariadb
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -29,6 +55,14 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 3306
+        volumeMounts:
+        - name: mariadb-ps
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mariadb-ps
+        persistentVolumeClaim:
+          claimName: mariadb-pv-claim
+      
 
 ---
 apiVersion: v1
